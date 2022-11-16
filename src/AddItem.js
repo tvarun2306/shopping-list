@@ -1,0 +1,92 @@
+import React,{useState} from 'react';
+
+const AddItem = ()=>{
+
+    const [item,setItem]=useState();
+    const [list,setList]=useState([]);
+    const [total,setTotal]=useState(0);
+
+    function addName(e){
+        const {name,value} = e.target;
+        setItem(preState=>({...preState,[name]:value}))
+    }
+
+    function AddToList(){
+        const listTemp=[...list];
+        listTemp.push(item);
+        setList(listTemp);   
+
+        setTotal(parseInt(total)+ parseInt(item.price))
+    }
+
+    function deleteList(index){
+        
+        
+        const listTemp=[...list];
+ 
+        listTemp.splice(index,1);
+
+        setList(listTemp);   
+        console.log(list[index])
+
+        
+        
+    }
+
+    return (<div className='addList'>
+        <h1>Add item</h1>
+
+        <div className='input'>
+        <input type="text"
+        name='name'
+        onInput={addName}
+        ></input>
+        <input type="text"
+        name='quantity'
+        onInput={addName}
+        ></input>
+        <input type="text"
+        name='price'
+        onInput={addName}
+        ></input>
+        <button onClick={AddToList}>Add</button>
+
+        </div>
+    
+        <div className='table'>
+            <table>
+                <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                {list.map((item,index)=><tr className='tableRow' key={index}>
+                <td>{index+1+" "}</td>
+                <td> {item.name}</td>
+                <td> {item.quantity}</td>
+                <td> {item.price}</td>
+                
+                <td>
+                    <input type='checkbox' ></input>
+                    <button onClick={(index)=>{deleteList(index)}}>del</button>
+                </td>
+            </tr>)}
+                </tbody>
+                
+            
+    
+            
+            </table>
+            <div><h2>Totoal</h2>
+            <div> {total}</div>
+            </div>
+ 
+        </div>
+    </div>)
+}
+
+export default AddItem;
