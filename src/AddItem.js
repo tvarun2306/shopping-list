@@ -16,7 +16,7 @@ const AddItem = ()=>{
         listTemp.push(item);
         setList(listTemp);   
 
-        setTotal(parseInt(total)+ parseInt(item.price))
+        setTotal(parseInt(total)+ (parseInt(item.price)*parseInt(item.quantity)))
     }
 
     function deleteList(index){
@@ -29,22 +29,22 @@ const AddItem = ()=>{
 
         console.log(list);
         console.log(index);
-        setTotal(parseInt(total)- parseInt(item.price))
+        setTotal(parseInt(total) - (parseInt(item.price)*parseInt(item.quantity)))
     }
 
     return (<div className='addList'>
         <h1>Add item</h1>
 
         <div className='input'>
-        <input type="text"
+        <input type="text" placeholder='Item'
         name='name'
         onInput={addName}
         ></input>
-        <input type="text"
+        <input type="text" placeholder='quantity'
         name='quantity'
         onInput={addName}
         ></input>
-        <input type="text"
+        <input type="text" placeholder='price'
         name='price'
         onInput={addName}
         ></input>
