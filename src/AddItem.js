@@ -21,16 +21,15 @@ const AddItem = ()=>{
 
     function deleteList(index){
         
-        
-        const listTemp=[...list];
- 
+        const listTemp=[...list]; 
         listTemp.splice(index,1);
-
         setList(listTemp);   
-        console.log(list[index])
 
-        
-        
+        console.log(listTemp);
+
+        console.log(list);
+        console.log(index);
+        setTotal(parseInt(total)- parseInt(item.price))
     }
 
     return (<div className='addList'>
@@ -64,6 +63,7 @@ const AddItem = ()=>{
                 </tr>
                 </thead>
                 <tbody>
+
                 {list.map((item,index)=><tr className='tableRow' key={index}>
                 <td>{index+1+" "}</td>
                 <td> {item.name}</td>
@@ -72,14 +72,10 @@ const AddItem = ()=>{
                 
                 <td>
                     <input type='checkbox' ></input>
-                    <button onClick={(index)=>{deleteList(index)}}>del</button>
+                    <button onClick={()=>{deleteList(index)}}>del</button>
                 </td>
             </tr>)}
-                </tbody>
-                
-            
-    
-            
+                </tbody>           
             </table>
             <div><h2>Totoal</h2>
             <div> {total}</div>

@@ -5,7 +5,6 @@ import AddItem from './AddItem';
 function App() {
   return (
     <div className="App">
-      
         <img src='../list-img.webp' alt="logo"></img>
       
       <div>
