@@ -5,6 +5,14 @@ const AddItem = ()=>{
     const [item,setItem]=useState();
     const [list,setList]=useState([]);
     const [total,setTotal]=useState(0);
+    const [getName, setName] = useState(false);
+
+        const handleNameChange = () => {
+            setName(!getName); 
+        }
+
+
+    const [showAddItem,setShowAddItem]= useState(false);
 
     function addName(e){
         const {name,value} = e.target;
@@ -33,7 +41,13 @@ const AddItem = ()=>{
     }
 
     return (<div className='addList'>
+        
         <h1>Add item</h1>
+        <button 
+        
+        onClick={()=>{setShowAddItem(!showAddItem);handleNameChange()}}>{getName?"back":"AddItem"}</button>
+
+        
 
         <div className='input'>
         <input type="text" placeholder='Item'
@@ -51,8 +65,13 @@ const AddItem = ()=>{
         <button onClick={AddToList}>Add</button>
 
         </div>
+
+
     
-        <div className='table'>
+        {
+            showAddItem ? 
+            
+            <div className='table'>
             <table>
                 <thead>
                 <tr>
@@ -81,7 +100,7 @@ const AddItem = ()=>{
             <div> {total}</div>
             </div>
  
-        </div>
+        </div>:<></>}
     </div>)
 }
 
